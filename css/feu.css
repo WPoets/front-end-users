@@ -1,0 +1,54 @@
+/*menu*/
+.feu-menu {
+	margin-bottom:11px;
+	margin-left:0;
+}
+.feu-menu li {
+	display:inline;
+	margin-right:5px;
+}
+/*form*/
+.feu-form fieldset {
+	margin-top:20px;
+}
+.feu-form fieldset legend {
+	font-size:16px;
+	border-bottom:1px solid #eee;
+	margin-bottom:8px;
+	padding-bottom:4px;
+}
+.feu-form fieldset > div {
+	clear:both;
+	padding:5px 0;
+}
+.feu-form fieldset > div > div {
+	margin-left:130px;
+}
+.feu-form fieldset > div > div span.description {
+	font-size:11px;
+	float:right;
+	width:350px;
+}
+.feu-form fieldset label {
+	float:left;
+	width:130px;
+}
+.feu-form fieldset label > span {
+	font-style:italic;
+	color:#999;
+}
+.feu-form .submit {
+	margin-top:15px;
+}
+.feu-form [type="password"] {
+	margin:0 7px 7px 0;
+}
+.feu-form #user-avatar-display h3 {
+	display:inline;
+	font-size: 16px;
+	margin-bottom: 8px;
+	padding-bottom: 1px;
+}
+.feu-form #user-avatar-display #user-avatar-display-image {
+	margin-top:18px;
+}
