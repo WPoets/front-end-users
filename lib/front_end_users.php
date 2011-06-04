@@ -13,7 +13,8 @@ class FrontEndUsers {
 	private $debug = false;
 	
 	static function activate_plugin() {
-		$this->flush_rules();
+		global $wp_rewrite;
+		$wp_rewrite->flush_rules();
 		add_option('front_end_users_url_path', 'profile');
 	}
 	
@@ -113,7 +114,7 @@ class FrontEndUsers {
 
 	}
 	
-	private function flush_rules() {
+	public function flush_rules() {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 	}

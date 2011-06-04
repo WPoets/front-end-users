@@ -27,6 +27,7 @@ add_action('admin_menu', array($feu, 'add_options_page'));
 add_filter('rewrite_rules_array', array($feu, 'add_rewrite_rules'));
 add_filter('query_vars', array($feu, 'add_query_vars'));
 add_filter('template_redirect', array($feu, 'template_redirect'));
+add_action('wp_loaded', array($feu, 'flush_rules'));
 
 // Restricting non-admin users
 add_action('admin_init', array($feu, 'restrict_admin_access'), 1);
