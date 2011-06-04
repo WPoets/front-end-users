@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Front End Users
-Plugin URI: 
-Description: Provides functionality for letting users manage their settings and preferences without going into wp-admin
+Plugin URI: http://wordpress.org/extend/plugins/front-end-users/
+Description: Hides the WordPress admin section from specified user roles, allows users to edit their settings from the front-end, and allows for customization of user-specific pages on the front-end.
 Author: Tom Benner
 Version: 1.0
 Author URI: 
