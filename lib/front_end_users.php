@@ -72,7 +72,9 @@ class FrontEndUsers {
 		$this->init_views();
 		$this->register_css();
 		$this->set_user_avatar_enabled();
-		$this->disable_wp_admin_bar();
+		if (!$this->has_admin_access()) {
+			$this->disable_wp_admin_bar();
+		}
 		$this->initialized = true;
 		
 	}
