@@ -55,6 +55,8 @@ function set_custom_feu_views($settings) {
 			),
 		// These will appear as subitems for the 'settings' menu item because they're listed in as the 'items' of 'settings'.
 		// You'd need to create my-first-settings-page.php and my-second-settings-page.php in the views directory.
+		// Please note that this only outputs HTML; you'll need to set up some JS or CSS to have these behave like rollovers
+		// or behave in some other way.
 		'my-first-settings-page' => array(
 				'title' => 'My First Settings Page'
 			),
