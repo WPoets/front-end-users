@@ -14,6 +14,8 @@ Front-End Users also makes it easy to:
 * Add other user-specific pages and display a menu of all of some of these pages
 * Determine whether the current user has access to the admin section
 
+The documentation for the hooks is in [example_hooks.php](http://github.com/tombenner/front-end-users/blob/master/example_hooks.php), and the documentation for the functions is in [functions.php](http://github.com/tombenner/front-end-users/blob/master/functions.php).
+
 If the [User Avatar plugin](http://wordpress.org/extend/plugins/user-avatar/) is also installed, the avatar-editing functionality it provides will be shown on the front-end user settings page.
 
 If you'd like to grab development releases, see what new features are being added, or browse the source code please visit the [GitHub repo](http://github.com/tombenner/front-end-users).

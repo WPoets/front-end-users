@@ -2,7 +2,7 @@
 Contributors: tombenner
 Tags: front end, public, users, roles, admin, block, hide, prevent, profile, plugin
 Requires at least: 3.0
-Tested up to: 3.1.3
+Tested up to: 3.2.1
 Stable tag: trunk
 
 Hides the WordPress admin section from specified user roles, allows users to edit their settings from the front-end, and more. 
@@ -17,6 +17,8 @@ Front-End Users also makes it easy to:
 * Change the URL of the profile editing page and other user-specific pages
 * Add other user-specific pages and display a menu of all of some of these pages
 * Determine whether the current user has access to the admin section
+
+The documentation for the hooks is in [example_hooks.php](http://github.com/tombenner/front-end-users/blob/master/example_hooks.php), and the documentation for the functions is in [functions.php](http://github.com/tombenner/front-end-users/blob/master/functions.php).
 
 If the [User Avatar plugin](http://wordpress.org/extend/plugins/user-avatar/) is also installed, the avatar-editing functionality it provides will be shown on the front-end user settings page.
 
