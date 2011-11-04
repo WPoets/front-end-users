@@ -465,7 +465,7 @@ class FrontEndUsers {
 				if (!empty($view['items'])) {
 				
 					$html .= '<li class="submenu">';
-					$html .= '<span class="submenu-name">'.$view['key'].'</span>';
+					$html .= '<span class="submenu-name">'.$view['title'].'</span>';
 					$html .= '<ul>';
 					
 					foreach($view['items'] as $subview_key) {
