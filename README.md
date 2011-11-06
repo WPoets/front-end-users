@@ -25,6 +25,7 @@ Installation
 
 1. Upload `front-end-users` to the `wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Make sure that [Pretty Permalinks](http://codex.wordpress.org/Introduction_to_Blogging#Pretty_Permalinks) are enabled and working
 
 Frequently Asked Questions
 --------------------------
