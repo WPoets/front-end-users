@@ -3,7 +3,7 @@ Contributors: tombenner
 Tags: front end, public, users, roles, admin, block, hide, prevent, profile, plugin
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: trunk
+Stable tag: 1.1
 
 Hides the WordPress admin section from specified user roles, allows users to edit their settings from the front-end, and more. 
 
@@ -44,3 +44,9 @@ Please feel free to either add a topic in the WordPress forum or contact me thro
 1. The settings for Front-End Users.
 1. The default profile settings page that's displayed on the front-end to users. This can easily be modified or re-styled if any changes are desired.
 1. An example of how user-specific pages and a menu listing them can be added.
+
+== Changelog ==
+
+= 1.1 =
+* Added a switch that allows custom profile fields added by plugins and themes to show up in the default public settings view
+* Added an exception to the admin URL rewrite to correct the admin profile form's action
