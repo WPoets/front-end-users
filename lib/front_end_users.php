@@ -16,6 +16,7 @@ class FrontEndUsers {
 		global $wp_rewrite;
 		$wp_rewrite->flush_rules();
 		add_option('front_end_users_url_path', 'profile');
+		add_option('front_end_users_display_custom_profile_settings', 0);
 	}
 	
 	public function init() {
@@ -50,7 +51,8 @@ class FrontEndUsers {
 		$options = get_option('front_end_users_options');
 		$defaults = array(
 			'url_path' => 'profile',
-			'roles_with_admin_access' => array($this->administrator_role_key)
+			'roles_with_admin_access' => array($this->administrator_role_key),
+			'display_custom_profile_settings' => 0
 		);
 		
 		if (empty($options)) {
@@ -62,9 +64,10 @@ class FrontEndUsers {
 		
 		$default_settings = array(
 			'404_include_path' => get_theme_root().'/'.get_template().'/404.php',
-			'views' => $default_views,
+			'display_custom_profile_settings' => $options['display_custom_profile_settings'],
 			'roles_with_admin_access' => $options['roles_with_admin_access'],
 			'url_path' => $options['url_path'],
+			'views' => $default_views,
 			'views_directory' => $this->plugin_file_path.'views/'
 		);
 
@@ -82,8 +85,9 @@ class FrontEndUsers {
 	public function admin_init() {
 		register_setting('front-end-users', 'front_end_users_options', array($this, 'validate_options'));
 		add_settings_section('front-end-users-main', 'Settings', array($this, 'settings_text'), 'front-end-users');
-		add_settings_field('url_path', 'URL Base', array($this, 'settings_input_url_path'), 'front-end-users', 'front-end-users-main');
 		add_settings_field('roles_with_admin_access', 'Roles with Admin Access', array($this, 'settings_input_roles_with_admin_access'), 'front-end-users', 'front-end-users-main');
+		add_settings_field('url_path', 'URL Base', array($this, 'settings_input_url_path'), 'front-end-users', 'front-end-users-main');
+		add_settings_field('display_custom_profile_settings', 'Display Custom Profile Settings', array($this, 'settings_input_display_custom_profile_settings'), 'front-end-users', 'front-end-users-main');
 	}
 	
 	private function init_views() {
@@ -566,7 +570,9 @@ class FrontEndUsers {
 			if (!is_wp_error($errors)) {
 			
 				do_action('feu_after_update_user', $user, $_POST);
-				
+				if ($this->get_display_custom_profile_settings()) {
+					do_action('personal_options_update', $user_id);
+				}
 				$redirect_url = feu_get_url('settings');
 				wp_redirect($redirect_url.'?updated=true');
 				die();
@@ -614,6 +620,10 @@ class FrontEndUsers {
 		
 	}
 	
+	public function get_display_custom_profile_settings() {
+		return $this->settings['display_custom_profile_settings'];
+	}
+	
 	public function enqueue_user_avatar_resources() {
 		// These are needed for user_avatar_form()
 		wp_enqueue_script('thickbox');
@@ -650,6 +660,9 @@ class FrontEndUsers {
 		if (empty($options['url_path'])) {
 			$options['url_path'] = 'profile';
 		}
+		if (!isset($options['display_custom_profile_settings'])) {
+			$options['display_custom_profile_settings'] = 0;
+		}
 		$this->flush_rules();
 		return $options;
 	}
@@ -660,8 +673,16 @@ class FrontEndUsers {
 	
 	public function settings_input_url_path() {
 		$options = get_option('front_end_users_options');
-		echo '<input id="url_path" name="front_end_users_options[url_path]" type="text" value="'.esc_attr($options['url_path']).'" />';
-		echo '<br /><em>(a value of "profile" will mean the user landing page is at "http://mysite.com/profile/")</em>';
+		echo '<input type="text" id="url_path" name="front_end_users_options[url_path]" value="'.esc_attr($options['url_path']).'" />';
+		echo '<br /><em>(A value of "profile" will mean the user landing page is at "http://mysite.com/profile/".)</em>';
+	}
+	
+	public function settings_input_display_custom_profile_settings() {
+		$options = get_option('front_end_users_options');
+		$checked = isset($options['display_custom_profile_settings']) ?
+			($options['display_custom_profile_settings'] ? ' checked="checked"' : '') : '';
+		echo '<input type="checkbox" id="display_custom_profile_settings" name="front_end_users_options[display_custom_profile_settings]" value="1"'.$checked.' />';
+		echo '<br /><em>(This determines whether profile fields added by plugins or themes will show up in the default public settings view. Please note that some plugins\' profile fields may not function correctly outside of the admin section.)</em>';
 	}
 	
 	public function settings_input_roles_with_admin_access() {

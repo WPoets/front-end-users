@@ -125,6 +125,12 @@ feu_header();
 			
 			</fieldset>
 			
+			<?php if ($feu->get_display_custom_profile_settings()): ?>
+			
+				<?php do_action( 'show_user_profile', $user ); ?>
+			
+			<?php endif; ?>
+			
 			<div class="submit">
 			
 				<input type="hidden" name="user_id" value="<?php echo esc_attr($user->ID); ?>" />
