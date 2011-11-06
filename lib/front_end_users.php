@@ -339,9 +339,11 @@ class FrontEndUsers {
 		}
 		global $current_user;
 		get_currentuserinfo();
+		$script_name = $_SERVER['SCRIPT_NAME'];
 		if ($current_user->ID == 0) {
 			return site_url().'/';
-		} else if (!$this->has_admin_access()) {
+		}
+		if (!$this->has_admin_access()) {
 			// Allow admin AJAX to be used
 			if ($url == get_bloginfo('wpurl').'/wp-admin/admin-ajax.php') {
 				return $url;
@@ -352,6 +354,11 @@ class FrontEndUsers {
 				return $url;
 			}
 			return $this->get_view_url();
+		}
+		if ($this->has_admin_access()) {
+			if (preg_match('/\/wp-admin\/profile\.php/', $script_name)) {
+				return $url;
+			}
 		}
 		if (preg_match('/\/wp-admin\/profile\.php$/', $url)) {
 			return feu_get_url();
