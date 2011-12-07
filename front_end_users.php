@@ -33,6 +33,7 @@ add_action('wp_loaded', array($feu, 'flush_rules'));
 add_action('admin_init', array($feu, 'restrict_admin_access'), 1);
 add_filter('admin_url', array($feu, 'rewrite_admin_url'), 1, 1);
 add_filter('login_url', array($feu, 'rewrite_login_url'), 1, 1);
+add_filter('wp_redirect', array($feu, 'rewrite_wp_redirect'), 1, 1);
 
 // Reskinning wp-login.php
 add_action('login_head', array($feu, 'login_head'));

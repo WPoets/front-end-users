@@ -371,6 +371,24 @@ class FrontEndUsers {
 		}
 		return $url;
 	}
+	
+	// If a user doesn't have admin access, prevent wp_redirect() from redirecting to the admin section
+	public function rewrite_wp_redirect($url) {
+		// This may be called before the init action occurs, so we need to explicitly call init() in that case
+		if (!$this->initialized) {
+			$this->init();
+		}
+		if (!$this->has_admin_access()) {
+			if (preg_match('/\/wp-admin\//', $url)) {
+				if ($this->is_logged_in()) {
+					return feu_get_url();
+				} else {
+					return site_url();
+				}
+			}
+		}
+		return $url;
+	}
 
 	public function rewrite_login_url($url) {
 		if (strstr($url, '%2Fwp-admin%2F')) {
