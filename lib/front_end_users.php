@@ -294,8 +294,10 @@ class FrontEndUsers {
 	
 	public function has_admin_access() {
 		global $current_user;
+		if (!function_exists('get_currentuserinfo')) {
+			require_once ABSPATH.WPINC.'/pluggable.php';
+		}
 		get_currentuserinfo();
-		
 		if ($current_user->ID == 0 || empty($current_user->roles)) {
 			return false;
 		}
