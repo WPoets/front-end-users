@@ -626,6 +626,14 @@ class FrontEndUsers {
 		return $this->settings['display_custom_profile_settings'];
 	}
 	
+	public function prepare_user_avatar() {
+		$this->enqueue_user_avatar_resources();
+		// This function only deletes the avatar if the user has chosen to do so on the previous page
+		if (function_exists('user_avatar_delete')) {
+			user_avatar_delete();
+		}
+	}
+	
 	public function enqueue_user_avatar_resources() {
 		// These are needed for user_avatar_form()
 		wp_enqueue_script('thickbox');

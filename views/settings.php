@@ -11,7 +11,7 @@ if (!empty($_POST)) {
 }
 
 if ($user_avatar_enabled) {
-	$feu->enqueue_user_avatar_resources();
+	$feu->prepare_user_avatar();
 }
 
 feu_header();
