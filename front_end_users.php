@@ -22,6 +22,7 @@ add_action('admin_init', array($feu, 'admin_init'));
 
 // Admin options page
 add_action('admin_menu', array($feu, 'add_options_page'));
+add_filter('plugin_action_links', array($feu, 'add_plugin_action_links'), 10, 2);
 
 // Routing
 add_filter('rewrite_rules_array', array($feu, 'add_rewrite_rules'));

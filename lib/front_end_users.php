@@ -686,6 +686,14 @@ class FrontEndUsers {
 			array($this, 'render_options_page')
 		);
 	}
+	
+	public function add_plugin_action_links($links, $file) {
+		if ($file == 'front-end-users/front_end_users.php') {
+			$settings_link = '<a href="'.get_bloginfo('wpurl').'/wp-admin/options-general.php?page=front-end-users.php" title="Settings">Settings</a>';
+			array_unshift($links, $settings_link);
+		}
+		return $links;
+	}
  	
 	public function render_options_page() {
 		require_once $this->plugin_file_path.'admin/options.php';
