@@ -406,16 +406,26 @@ class FrontEndUsers {
 	}
 	
 	public function user_header_links() {
+		$links = $this->user_header_links_array();
+		$html = '<ul>';
+		foreach($links as $link) {
+			$html .= '<li><a href="'.$link[2].'" title="'.esc_attr($link[1]).'" class="user-header-link-'.$links[0].'">'.$link[1].'</a></li>';
+		}
+		$html .= '</ul>';
+		return $html;
+	}
+	
+	public function user_header_links_array() {
 		
 		$user = wp_get_current_user();
 		$user_id = empty($user->ID) ? null : $user->ID;
 		
-		$html = '<ul>';
+		$links = array();
 		
 		if (empty($user_id)) {
 		
-			$html .= '<li><a href="'.wp_login_url().'" title="Sign in">Sign in</a></li>';
-			$html .= '<li><a href="'.get_bloginfo('wpurl').'/wp-login.php?action=register" title="Register">Register</a></li>';
+			$links[] = array('sign_in', 'Sign in', wp_login_url());
+			$links[] = array('register', 'Register', get_bloginfo('wpurl').'/wp-login.php?action=register', );
 		
 		} else {
 		
@@ -424,18 +434,16 @@ class FrontEndUsers {
 			$profile_link_title = apply_filters('feu_profile_link_title', $profile_link_title, $user);
 			$dashboard_link_title = apply_filters('feu_dashboard_link_title', 'Dashboard', $user);
 			
-			$html .= '<li><a href="'.feu_get_url().'" title="'.esc_attr($profile_link_title).'">'.$profile_link_title.'</a></li>';
+			$links[] = array('profile', $profile_link_title, feu_get_url());
 			if (feu_has_admin_access()) {
-				$html .= '<li><a href="'.get_bloginfo('wpurl').'/wp-admin/" title="'.esc_attr($dashboard_link_title).'">'.$dashboard_link_title.'</a></li>';
+				$links[] = array('dashboard', $dashboard_link_title, get_bloginfo('wpurl').'/wp-admin/');
 			}
-			$html .= '<li><a href="'.wp_logout_url().'" title="Sign out">Sign out</a></li>';
+			$links[] = array('sign_out', 'Sign out', wp_logout_url());
 	
 		}
 		
-		$html .= '</ul>';
-		 
-		return $html;
-		
+		return $links;
+	
 	}
 	
 	private function call_function_if_exists($function_name) {

@@ -66,6 +66,26 @@ function feu_user_header_links() {
 	return $feu->user_header_links();
 }
 
+// Returns an array of useful user links that depend on the current user state.  You'll want to iterate through these
+// and format each entry's data in a way that's appropriate for your layout.  Each entry represents a link and is an
+// array of three elements.
+//
+// Here are some examples of entries that can be returned in this array:
+// array('sign_in', 'Sign in', 'http://mysite.com/wp-login.php')
+// array('register', 'Register', 'http://mysite.com/wp-login.php?action=register')
+// array('profile', 'John', 'http://mysite.com/profile/')
+// array('dashboard', 'Dashboard', 'http://mysite.com/wp-admin/')
+//
+// Here's an example of how to use it to create links:
+// $user_links = feu_user_header_links_array();
+// foreach($user_links as $link){
+// 	echo '<a href="'.$link[2].'" class="user_action_link_'.$link[0].'">'.$link[1].'</a>';
+// }
+function feu_user_header_links_array() {
+	global $feu;
+	return $feu->user_header_links_array();
+}
+
 // Accepts an array with two elements, the first being a boolean where true == message and false == error, and
 // the second being either the text to display or a WP_Error object whose messages will all be displayed.
 function feu_form_message($message=null) {
