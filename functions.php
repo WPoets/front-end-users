@@ -115,4 +115,9 @@ function feu_get_display_names_options_html($user) {
 	return $feu->get_display_names_options_html($user);
 }
 
+// Outputs the HTML of the user settings page, so that it can be shown anywhere (e.g. inside a template in a theme)
+function feu_display_settings_page() {
+	require WP_PLUGIN_DIR.'/front-end-users/views/settings.php';
+}
+
 ?>

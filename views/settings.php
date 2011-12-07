@@ -6,6 +6,11 @@ $user = wp_get_current_user();
 $update_status = null;
 $user_avatar_enabled = $feu->is_user_avatar_enabled();
 
+if (empty($user->ID)) {
+	echo '<p>Sorry, you need to be logged in to view these settings.</p>';
+	return;
+}
+
 if (!empty($_POST)) {
 	$update_status = $feu->update_user_settings($user, $_POST);
 }
