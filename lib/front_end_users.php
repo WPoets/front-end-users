@@ -4,8 +4,8 @@ class FrontEndUsers {
 
 	public $plugin_file_path = '';
 	public $plugin_url = '';
+	public $settings = array();
 	private $views = array();
-	private $settings = array();
 	private $action_key = 'feu_action';
 	private $administrator_role_key = 'administrator';
 	private $user_avatar_enabled = false;
