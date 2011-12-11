@@ -7,7 +7,7 @@
 
 add_filter('feu_settings', 'set_custom_feu_views_directory');
 function set_custom_feu_views_directory($settings) {
-	$settings['views_directory'] = get_theme_root().'/'.get_template().'/views/';
+	$settings['views_directory'] = get_template_directory().'/views/';
 	return $settings;
 }
 
