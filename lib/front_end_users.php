@@ -590,6 +590,8 @@ class FrontEndUsers {
 		
 			require_once ABSPATH.'wp-admin/includes/admin.php';
 			
+			do_action('feu_before_update_user', $_POST);
+			
 			$errors = edit_user($user_id);
 			
 			// Update the user object for use in the form or in the feu_after_update_user action
