@@ -91,6 +91,17 @@ function after_update_user($user, $post_data) {
 	// Add code here to process any other fields, etc
 }
 
+// Setting URL params after a user updates their profile:
+// In this example, if the user sets their first name to "Bob", after the submitting the form, the next URL will
+// have "?updated=true&say_hi_to_bob=true" instead of just "?updated=true".
+add_filter('feu_settings_update_url_params', 'feu_custom_settings_update_url_params');
+function feu_custom_settings_update_url_params($params) {
+	if ($_POST['first_name'] == 'Bob') {
+		$params['say_hi_to_bob'] = 'true';
+	}
+	return $params;
+}
+
 
 // Make the layout of wp-login.php similar to the rest of the site.  To do this, create files
 // like the ones listed below, which can then be included both in header.php/footer.php and here.
