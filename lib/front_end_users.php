@@ -602,7 +602,14 @@ class FrontEndUsers {
 					do_action('personal_options_update', $user_id);
 				}
 				$redirect_url = feu_get_url('settings');
-				wp_redirect($redirect_url.'?updated=true');
+				$redirect_url = apply_filters('feu_settings_update_url', $redirect_url);
+				$update_url_params = array('updated' => 'true');
+				$update_url_params = apply_filters('feu_settings_update_url_params', $update_url_params, $user);
+				$update_url_params = http_build_query($update_url_params);
+				if ($update_url_params) {
+					$update_url_params = '?'.$update_url_params;
+				}
+				wp_redirect($redirect_url.$update_url_params);
 				die();
 				
 			} else {
