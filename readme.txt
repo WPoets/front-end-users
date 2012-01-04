@@ -3,7 +3,7 @@ Contributors: tombenner
 Tags: front end, public, users, roles, admin, block, hide, prevent, profile, plugin
 Requires at least: 3.0
 Tested up to: 3.3
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 Hides the WordPress admin section from specified user roles, allows users to edit their settings from the front-end, and more. 
 
