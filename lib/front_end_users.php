@@ -554,9 +554,9 @@ class FrontEndUsers {
 	
 	// Profile settings-related functions
 	
-	public function update_user_settings(&$user, $_POST) {
+	public function update_user_settings(&$user, $post) {
 	
-		if (empty($_POST)) {
+		if (empty($post)) {
 			return null;
 		}
 
@@ -579,18 +579,18 @@ class FrontEndUsers {
 		$has_required_fields = true;
 		
 		foreach($required_fields as $field) {
-			if (!isset($_POST[$field])) {
+			if (!isset($post[$field])) {
 				$has_required_fields = false;
 				break;
 			}
 		}
 		
 		// If everything looks valid, use WP's edit_user() (which handles POST data behind the scenes) to update the user's data.
-		if ($has_required_fields && $user_id == $_POST['user_id']) {
+		if ($has_required_fields && $user_id == $post['user_id']) {
 		
 			require_once ABSPATH.'wp-admin/includes/admin.php';
 			
-			do_action('feu_before_update_user', $_POST);
+			do_action('feu_before_update_user', $post);
 			
 			$errors = edit_user($user_id);
 			
@@ -599,7 +599,7 @@ class FrontEndUsers {
 			
 			if (!is_wp_error($errors)) {
 			
-				do_action('feu_after_update_user', $user, $_POST);
+				do_action('feu_after_update_user', $user, $post);
 				if ($this->get_display_custom_profile_settings()) {
 					do_action('personal_options_update', $user_id);
 				}
